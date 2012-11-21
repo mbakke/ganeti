@@ -1379,6 +1379,7 @@ def _BuildInstanceHookEnv(name, primary_node, secondary_nodes, os_type, status,
     # TODO(2.7) remove deprecated "memory" value
     "INSTANCE_MEMORY": maxmem,
     "INSTANCE_VCPUS": vcpus,
+    "INSTANCE_SOCKETS": sockets,
     "INSTANCE_DISK_TEMPLATE": disk_template,
     "INSTANCE_HYPERVISOR": hypervisor_name,
   }
@@ -1471,6 +1472,7 @@ def _BuildInstanceHookEnvByObject(lu, instance, override=None):
     "maxmem": bep[constants.BE_MAXMEM],
     "minmem": bep[constants.BE_MINMEM],
     "vcpus": bep[constants.BE_VCPUS],
+    "sockets": bep[constants.BE_SOCKETS],
     "nics": _NICListToTuple(lu, instance.nics),
     "disk_template": instance.disk_template,
     "disks": [(disk.size, disk.mode) for disk in instance.disks],
