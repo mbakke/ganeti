@@ -1733,6 +1733,7 @@ def _GetInstanceParameterFields():
     constants.BE_MAXMEM: "ConfigMaxMem",
     constants.BE_MINMEM: "ConfigMinMem",
     constants.BE_VCPUS: "ConfigVCPUs",
+    constants.BE_SOCKETS: "ConfigSockets",
     }
 
   hv_title = {
