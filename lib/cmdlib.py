@@ -1324,8 +1324,8 @@ def _ExpandInstanceName(cfg, name):
 
 
 def _BuildInstanceHookEnv(name, primary_node, secondary_nodes, os_type, status,
-                          minmem, maxmem, vcpus, nics, disk_template, disks,
-                          bep, hvp, hypervisor_name, tags):
+                          minmem, maxmem, vcpus, sockets, nics, disk_template,
+                          disks, bep, hvp, hypervisor_name, tags):
   """Builds instance related env variables for hooks
 
   This builds the hook environment from individual variables.
@@ -1346,6 +1346,8 @@ def _BuildInstanceHookEnv(name, primary_node, secondary_nodes, os_type, status,
   @param maxmem: the maximum memory size of the instance
   @type vcpus: string
   @param vcpus: the count of VCPUs the instance has
+  @type sockets: string
+  @param sockets: amount of sockets to balance VCPUs over
   @type nics: list
   @param nics: list of tuples (ip, mac, mode, link) representing
       the NICs the instance has
@@ -9480,6 +9482,7 @@ class LUInstanceCreate(LogicalUnit):
       minmem=self.be_full[constants.BE_MINMEM],
       maxmem=self.be_full[constants.BE_MAXMEM],
       vcpus=self.be_full[constants.BE_VCPUS],
+      sockets=self.be_full[constants.BE_SOCKETS],
       nics=_NICListToTuple(self, self.nics),
       disk_template=self.op.disk_template,
       disks=[(d[constants.IDISK_SIZE], d[constants.IDISK_MODE])
@@ -12290,6 +12293,8 @@ class LUInstanceSetParams(LogicalUnit):
       args["maxmem"] = self.be_new[constants.BE_MAXMEM]
     if constants.BE_VCPUS in self.be_new:
       args["vcpus"] = self.be_new[constants.BE_VCPUS]
+    if constants.BE_SOCKETS in self.be_new:
+      args["sockets"] = self.be_new[constants.BE_SOCKETS]
     # TODO: export disk changes. Note: _BuildInstanceHookEnv* don't export disk
     # information at all.
 
