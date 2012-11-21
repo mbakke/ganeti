@@ -913,6 +913,7 @@ BE_MEMORY = "memory" # deprecated and replaced by max and min mem
 BE_MAXMEM = "maxmem"
 BE_MINMEM = "minmem"
 BE_VCPUS = "vcpus"
+BE_SOCKETS = "sockets"
 BE_AUTO_BALANCE = "auto_balance"
 BE_ALWAYS_FAILOVER = "always_failover"
 BE_SPINDLE_USE = "spindle_use"
@@ -921,6 +922,7 @@ BES_PARAMETER_TYPES = {
   BE_MAXMEM: VTYPE_SIZE,
   BE_MINMEM: VTYPE_SIZE,
   BE_VCPUS: VTYPE_INT,
+  BE_SOCKETS: VTYPE_INT,
   BE_AUTO_BALANCE: VTYPE_BOOL,
   BE_ALWAYS_FAILOVER: VTYPE_BOOL,
   BE_SPINDLE_USE: VTYPE_INT,
@@ -1839,6 +1841,7 @@ BEC_DEFAULTS = {
   BE_MINMEM: 128,
   BE_MAXMEM: 128,
   BE_VCPUS: 1,
+  BE_SOCKETS: 0,
   BE_AUTO_BALANCE: True,
   BE_ALWAYS_FAILOVER: False,
   BE_SPINDLE_USE: 1,
