@@ -576,7 +576,7 @@ class KVMHypervisor(hv_base.BaseHypervisor):
       elif arg == "-m":
         memory = int(arg_list.pop(0))
       elif arg == "-smp":
-        vcpus = int(arg_list.pop(0))
+        vcpus = int(arg_list.pop(0).split(",")[0])
 
     if instance is None:
       raise errors.HypervisorError("Pid %s doesn't contain a ganeti kvm"
