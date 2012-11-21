@@ -2537,6 +2537,8 @@ def FinalizeExport(instance, snap_disks):
              instance.beparams[constants.BE_MAXMEM])
   config.set(constants.INISECT_INS, "vcpus", "%d" %
              instance.beparams[constants.BE_VCPUS])
+  config.set(constants.INISECT_INS, "sockets", "%d" %
+             instance.beparams[constants.BE_SOCKETS])
   config.set(constants.INISECT_INS, "disk_template", instance.disk_template)
   config.set(constants.INISECT_INS, "hypervisor", instance.hypervisor)
   config.set(constants.INISECT_INS, "tags", " ".join(instance.GetTags()))
