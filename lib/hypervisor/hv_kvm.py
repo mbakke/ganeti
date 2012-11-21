@@ -962,7 +962,6 @@ class KVMHypervisor(hv_base.BaseHypervisor):
     # used just by the vnc server, if enabled
     kvm_cmd.extend(["-name", instance.name])
     kvm_cmd.extend(["-m", instance.beparams[constants.BE_MAXMEM]])
-    kvm_cmd.extend(["-smp", instance.beparams[constants.BE_VCPUS]])
     kvm_cmd.extend(["-pidfile", pidfile])
     kvm_cmd.extend(["-balloon", "virtio"])
     kvm_cmd.extend(["-daemonize"])
@@ -971,6 +970,12 @@ class KVMHypervisor(hv_base.BaseHypervisor):
     if instance.hvparams[constants.HV_REBOOT_BEHAVIOR] == \
         constants.INSTANCE_REBOOT_EXIT:
       kvm_cmd.extend(["-no-reboot"])
+    if instance.beparams[constants.BE_SOCKETS] == 0:
+      kvm_cmd.extend(["-smp", instance.beparams[constants.BE_VCPUS]])
+    else:
+      kvm_cmd.extend(["-smp", "%d,sockets=%d" % \
+            (instance.beparams[constants.BE_VCPUS],
+            instance.beparams[constants.BE_SOCKETS])])
 
     hvp = instance.hvparams
     kernel_path = hvp[constants.HV_KERNEL_PATH]
