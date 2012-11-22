@@ -141,6 +141,10 @@ vcpus
     the number of VCPUs to assign to the instance (if this value makes
     sense for the hypervisor)
 
+sockets
+    the number of sockets to divide vcpus over. This value is silently
+    ignored if vcpus is not a product of it.
+
 auto\_balance
     whether the instance is considered in the N+1 cluster checks
     (enough redundancy in the cluster to survive a node failure)
